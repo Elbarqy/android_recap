@@ -11,28 +11,40 @@ interface UserDao {
     @Query("SELECT * FROM user")
     fun getAll(): List<User>
 
-    @Query("Select * FROM user WHERE userID IN (:userIds)")
-    fun loadAllById(userIds: IntArray): List<User>
+//    @Query("Select * FROM user WHERE userID IN (:userIds)")
+//    fun loadAllById(userIds: IntArray): List<User>
 
-    @Query(
-        "SELECT * FROM user WHERE first_name LIKE :first AND " +
-                "last_name LIKE :last LIMIT 1"
-    )
-    fun findByName(first: String, second: String): User
+//    @Query(
+//        "SELECT * FROM user WHERE first_name LIKE :first AND " +
+//                "last_name LIKE :last LIMIT 1"
+//    )
+//    fun findByName(first: String, second: String): User
 
     @Transaction
     @Query("SELECT * FROM user")
     fun getUsersWithTasks(): List<UserWithTasks>
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertTask(task: Task)
+
+
+
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertUserTaskCrossRef(userTaskCrossRef: UserTaskCrossRef)
+     fun insertUserTaskCrossRef(userTaskCrossRef: UserTaskCrossRef)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertUser(user: User)
+     fun insertUser(user: User)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+     fun insertTask(task: Task)
+
 
     @Delete
-    fun delete(user: User)
+     fun delete(user: User)
+
+    @Query("DELETE FROM user")
+    fun removeAllUsers()
+    @Query("DELETE FROM task")
+    fun removeAllTasks()
+
+
 }

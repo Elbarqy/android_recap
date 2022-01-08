@@ -8,5 +8,4 @@ data class UserTaskCrossRef(
     val userID: Int,
     val taskID: Int,
     val note:String,
-    val timeStamp: Date,
 )
